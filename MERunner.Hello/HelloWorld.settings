@@ -1,0 +1,7 @@
+HelloWorld =
+    "First",
+    "Second",
+    "Third",
+
+SystemGuids =
+    "024DB39B-12D1-471E-B6D2-5078F5543F5F", // HelloWorld_GenericSystem
