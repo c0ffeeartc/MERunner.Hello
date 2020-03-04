@@ -9,18 +9,14 @@ using Ent = Entitas.Generic.Entity<Settings>;
 namespace MERunner
 {
 [Export(typeof(ISystem_Factory))]
-public sealed class Factory_HelloWorld_GenericSystem : TSystem_Factory<HelloWorld_GenericSystem> { }
+public sealed class Factory_HelloWorld_System : TSystem_Factory<HelloWorld_System> { }
 
 	[Guid("024DB39B-12D1-471E-B6D2-5078F5543F5F")]
-	public class HelloWorld_GenericSystem : ReactiveSystem<Ent>
+	public sealed class HelloWorld_System : ReactiveSystem<Ent>
 	{
-		public				HelloWorld_GenericSystem	( Contexts contexts ) : base( contexts.Get<Settings>() )
+		public				HelloWorld_System	( Contexts contexts ) : base( contexts.Get<Settings>() )
 		{
 			_contexts			= contexts;
-		}
-
-		public				HelloWorld_GenericSystem	(  ) : this( Hub.Contexts )
-		{
 		}
 
 		private				Contexts				_contexts;
@@ -38,7 +34,7 @@ public sealed class Factory_HelloWorld_GenericSystem : TSystem_Factory<HelloWorl
 		protected override	void					Execute					( List<Ent> ents )
 		{
 			var ent					= _contexts.Get<Main>().CreateEntity();
-			ent.Add_( new Some( ">> Hello world system" ) );
+			ent.Add_( new Some( $">> {nameof(HelloWorld_System)}" ) );
 			Console.WriteLine( ent.Get_<Some>(  ).value );
 
 			var dict				= _contexts.Get<Settings>().Get_<SettingsDict>().Dict;
